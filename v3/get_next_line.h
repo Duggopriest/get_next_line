@@ -10,5 +10,6 @@
 # define BUFF_SIZE 1
 
 int				get_next_line(const int fd);
+char			**ft_split(char const *s, char t);
 
 #endif

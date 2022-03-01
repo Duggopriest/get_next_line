@@ -53,7 +53,7 @@ char	*get_next_line(int fd)
 	
 	n = 0;
 	while (stored[++n])
-		line = ft_strjoin(line, stored[n][0]);
+		line = ft_strjoin(line, &stored[n][0]);
 	free(stored);
 	buff = malloc(BUFF_SIZE + 1);
 	while (read(fd, buff, 1))

@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <unistd.h>
+#include "get_next_line.h"
 
 static int	cp(char const *str, char c)
 {
@@ -65,14 +64,3 @@ char	**ft_split(char const *s, char t)
 	return (str);
 }
 
-int	main()
-{
-	char *s = "hello world borjor";
-	char c = ' ';
-	char **f;
-	int	i = 0;
-
-	f = ft_split(s, c);
-	while (f[i++])
-		printf("%s\n");
-}
