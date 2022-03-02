@@ -63,4 +63,3 @@ char	**ft_split(char const *s, char t)
 	str[a] = 0;
 	return (str);
 }
-
