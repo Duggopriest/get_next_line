@@ -6,7 +6,7 @@
 /*   By: jgobbett <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 16:45:28 by jgobbett          #+#    #+#             */
-/*   Updated: 2022/03/02 16:45:35 by jgobbett         ###   ########.fr       */
+/*   Updated: 2022/03/03 17:54:22 by jgobbett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	charfind(char *str)
 	while (str[i])
 	{
 		if (str[i] == '\n')
-			return (i);
+			return (++i);
 		i++;
 	}
 	return (0);
@@ -72,9 +72,9 @@ char	*assignline(char **str)
 	char	*store;
 
 	i = charfind(*str);
-	if (i == 0 || (*str)[0] != '\n')
+	if (i == 0)
 		i = ft_strlen(*str);
-	line = malloc(i + 1);
+	line = malloc(i);
 	line[i] = '\0';
 	while (i-- > 0)
 		line[i] = (*str)[i];
@@ -82,7 +82,7 @@ char	*assignline(char **str)
 	i = ft_strlen(*str) - charfind(*str);
 	if (i != ft_strlen(*str))
 	{
-		store = malloc(i + 1);
+		store = malloc(i);
 		store[i] = '\0';
 		j = ft_strlen(*str);
 		while (i-- > 0)
@@ -101,7 +101,7 @@ char	*get_next_line(int fd)
 
 	if (BUFFER_SIZE < 1 || fd < 0)
 		return (NULL);
-	buff = malloc(BUFFER_SIZE + 1);
+	buff = (char *)malloc(BUFFER_SIZE);
 	while (!charfind(stored))
 	{
 		n = read(fd, buff, BUFFER_SIZE);
@@ -110,8 +110,9 @@ char	*get_next_line(int fd)
 		buff[n] = '\0';
 		stored = ft_strjoin(stored, buff);
 	}
-	free(buff);
 	if (stored)
-		return (assignline(&stored));
+		if (stored[0])
+			return (assignline(&stored));
+	free(buff);
 	return (NULL);
 }
