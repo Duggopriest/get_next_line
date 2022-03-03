@@ -72,7 +72,7 @@ char	*assignline(char **str)
 	char	*store;
 
 	i = charfind(*str);
-	if (i == 0)
+	if (i == 0 || (*str)[0] != '\n')
 		i = ft_strlen(*str);
 	line = malloc(i + 1);
 	line[i] = '\0';
@@ -99,6 +99,8 @@ char	*get_next_line(int fd)
 	int				n;
 	static char		*stored = NULL;
 
+	if (BUFFER_SIZE < 1 || fd < 0)
+		return (NULL);
 	buff = malloc(BUFFER_SIZE + 1);
 	while (!charfind(stored))
 	{

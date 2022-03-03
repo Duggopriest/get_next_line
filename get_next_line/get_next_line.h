@@ -20,7 +20,6 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 
-
 char	*get_next_line(int fd);
 char	**ft_split(char const *s, char t);
 
