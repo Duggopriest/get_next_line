@@ -64,33 +64,32 @@ char	*ft_strjoin(char *str, char *str2)
 	return (new);
 }
 
-char	*assignline(char **str)
+char	*assignline(char **old_store)
 {
 	int		i;
 	int		j;
-	char	*line;
-	char	*store;
+	char	*return_line;
+	char	*new_store;
 
-	i = charfind(*str);
+	i = charfind(*old_store);
 	if (i == 0)
-		i = ft_strlen(*str);
-	line = malloc(i + 1);
-	line[i] = '\0';
+		i = ft_strlen(*old_store);
+	return_line = malloc(i + 1);
+	return_line[i] = '\0';
 	while (i-- > 0)
-		line[i] = (*str)[i];
-	store = NULL;
-	i = ft_strlen(*str) - charfind(*str);
-	if (i != ft_strlen(*str) && i > 0)
+		return_line[i] = (*old_store)[i];
+	i = ft_strlen(*old_store) - charfind(*old_store);
+	if (i != ft_strlen(*old_store) && i > 0)
 	{
-		store = malloc(i + 1);
-		store[i++] = '\0';
-		j = ft_strlen(*str);
+		new_store = malloc(i + 1);
+		new_store[i++] = '\0';
+		j = ft_strlen(*old_store);
 		while (i-- > 0)
-			store[i] = (*str)[j--];
+			new_store[i] = (*old_store)[j--];
 	}
-	free(*str);
-	*str = store;
-	return (line);
+	free(*old_store);
+	*old_store = store;
+	return (return_line);
 }
 
 char	*get_next_line(int fd)
