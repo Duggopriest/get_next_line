@@ -78,6 +78,7 @@ char	*assignline(char **old_store)
 	return_line[i] = '\0';
 	while (i-- > 0)
 		return_line[i] = (*old_store)[i];
+	new_store = NULL;
 	i = ft_strlen(*old_store) - charfind(*old_store);
 	if (i != ft_strlen(*old_store) && i > 0)
 	{
