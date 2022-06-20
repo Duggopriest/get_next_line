@@ -89,7 +89,7 @@ char	*assignline(char **old_store)
 			new_store[i] = (*old_store)[j--];
 	}
 	free(*old_store);
-	*old_store = store;
+	*old_store = new_store;
 	return (return_line);
 }
 
